@@ -6,8 +6,9 @@ import (
 	"os"
 	"strconv"
 
+	"anomaly_detection/db"
+
 	"github.com/julienschmidt/httprouter"
-	db "gitlab.com/residuall-dev/database/bastion"
 )
 
 //RequestState struct

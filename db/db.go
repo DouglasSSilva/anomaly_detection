@@ -17,7 +17,7 @@ const (
 	// DBConfPath is to be used for dockerizing the APIs
 	DBConfPath = "/etc/dbconf"
 	// AlternativeDBConfPath to be used out of docker
-	AlternativeDBConfPath = "db/"
+	AlternativeDBConfPath = "src/anomaly_detection/db/"
 )
 
 // Conn persists routes to SQL

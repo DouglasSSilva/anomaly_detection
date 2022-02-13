@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 
-	"bitbucket.org/residuall-desenv/bastion/db"
+	"anomaly_detection/db"
 )
 
 func main() {

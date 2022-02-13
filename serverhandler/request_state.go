@@ -1,12 +1,8 @@
 package serverhandler
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 	"strconv"
-
-	"anomaly_detection/db"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -19,27 +15,6 @@ type RequestState struct {
 	Ps     httprouter.Params
 	Rerr   *ResponseError
 	Resp   ResponseType
-}
-
-func StartApp(env, alternateAccess, alternativeDBConfPath string) *Router {
-
-	goPath := os.Getenv("GOPATH")
-
-	var alternateConf string
-
-	if env == "production" || env == "alpha" {
-		alternateConf = fmt.Sprintf("%s%s", goPath, alternateAccess)
-	} else {
-		alternateConf = fmt.Sprintf("%s%s", goPath, alternativeDBConfPath)
-	}
-
-	db.ConnectDB(env, db.DBConfPath, alternateConf)
-	defer db.Conn.Close()
-
-	//Create new router to handle external requests
-	router := NewRouter()
-	router.HandleOPTIONS = true
-	return router
 }
 
 //GETByIntIDHandler receives id and gets header

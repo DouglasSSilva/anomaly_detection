@@ -21,7 +21,6 @@ func main() {
 	alternateConf := fmt.Sprintf("%s%s", goPath, db.AlternativeDBConfPath)
 
 	db.ConnectDB(env, db.DBConfPath, alternateConf)
-	defer db.Conn.Close()
 
 	//Create new router to handle external requests
 	router := serverhandler.NewRouter()

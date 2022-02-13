@@ -5,10 +5,9 @@ package db
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"bitbucket.org/liamstask/goose/lib/goose"
-	"cloud.google.com/go/datastore"
-	"github.com/jmoiron/sqlx"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -21,18 +20,14 @@ const (
 )
 
 // Conn persists routes to SQL
-var Conn *sqlx.DB
 var ConnORM *gorm.DB
-
-// Client persists routes to Cloud Datastore
-var Client *datastore.Client
 
 func ConnectDB(env, mainDBConf, alternateDBConf string) {
 	var err error
 	// var openstr string
 	// driver := "mysql"
 
-	if env == "" {
+	if strings.Compare(env, "") == 0 {
 		env = "development"
 	}
 
@@ -57,12 +52,6 @@ func ConnectDB(env, mainDBConf, alternateDBConf string) {
 
 	}), &gorm.Config{})
 
-	if err != nil {
-		log.Fatal("Error: mysql ", err)
-	}
-
-	fmt.Println(driver, openstr)
-	Conn, err = sqlx.Connect(driver, openstr)
 	if err != nil {
 		log.Fatal("Error: mysql ", err)
 	}

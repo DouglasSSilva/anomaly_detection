@@ -1,0 +1,3 @@
+development:
+    driver: mysql
+    open: root:root@tcp(172.17.0.2:3306)/landfill?parseTime=true
